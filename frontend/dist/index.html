@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carhub - Car Dealership Management</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-orange: #ff6b35;
+            --secondary-orange: #ff8c42;
+            --dark-bg: #1a1a1a;
+            --dark-card: #2d2d2d;
+            --dark-border: #404040;
+        }
+
+        .dark {
+            background-color: var(--dark-bg);
+            color: white;
+        }
+
+        .dark .bg-white {
+            background-color: var(--dark-card) !important;
+        }
+
+        .dark .border-gray-200 {
+            border-color: var(--dark-border) !important;
+        }
+
+        .dark .text-gray-900 {
+            color: white !important;
+        }
+
+        .dark .text-gray-600 {
+            color: #d1d5db !important;
+        }
+
+        .orange-gradient {
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+        }
+
+        .login-animation {
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .car-card {
+            transition: all 0.3s ease;
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-transition {
+            transition: all 0.3s ease;
+        }
+
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary-orange);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 16px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .toast.success {
+            background-color: #10b981;
+        }
+
+        .toast.error {
+            background-color: #ef4444;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/index-COStDT54.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-B-Tfe8Cx.css">
+</head>
+<body>
+    <div id="app"></div>
+</body>
+</html>
