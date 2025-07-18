@@ -33,10 +33,43 @@
           <option value="AVAILABLE">Available</option>
           <option value="SOLD">Sold</option>
           <option value="RESERVED">Reserved</option>
+          <option value="MAINTENANCE">Maintenance</option>
         </select>
+        <input 
+          v-model="filters.createdAfter"
+          type="date" 
+          placeholder="Created After"
+          class="input-field"
+          title="Created After"
+        >
+        <input 
+          v-model="filters.createdBefore"
+          type="date" 
+          placeholder="Created Before"
+          class="input-field"
+          title="Created Before"
+        >
+        <input 
+          v-model="filters.minPrice"
+          type="number" 
+          placeholder="Min Price"
+          class="input-field"
+        >
+        <input 
+          v-model="filters.maxPrice"
+          type="number" 
+          placeholder="Max Price"
+          class="input-field"
+        >
+        <input 
+          v-model="filters.year"
+          type="number" 
+          placeholder="Year"
+          class="input-field"
+        >
         <button 
           @click="loadCars"
-          class="btn-primary flex items-center justify-center"
+          class="btn-primary flex items-center justify-center col-span-full md:col-span-1"
         >
           <i class="fas fa-search mr-2"></i>Search
         </button>
@@ -244,6 +277,40 @@
                 <option value="CVT">CVT</option>
               </select>
             </div>
+            <div class="form-group">
+              <label class="form-label">Doors</label>
+              <input 
+                v-model="carForm.doors"
+                type="number" 
+                min="1"
+                class="input-field"
+              >
+            </div>
+            <div class="form-group">
+              <label class="form-label">Seats</label>
+              <input 
+                v-model="carForm.seats"
+                type="number" 
+                min="1"
+                class="input-field"
+              >
+            </div>
+            <div class="form-group">
+              <label class="form-label">Engine Size</label>
+              <input 
+                v-model="carForm.engineSize"
+                type="text" 
+                class="input-field"
+              >
+            </div>
+            <div class="form-group">
+              <label class="form-label">VIN</label>
+              <input 
+                v-model="carForm.vin"
+                type="text" 
+                class="input-field"
+              >
+            </div>
           </div>
           
           <div class="form-group">
@@ -293,7 +360,12 @@ export default {
     const filters = ref({
       brand: '',
       model: '',
-      status: ''
+      status: '',
+      createdAfter: '',
+      createdBefore: '',
+      minPrice: null,
+      maxPrice: null,
+      year: null
     })
     const showAddCarModal = ref(false)
     const showEditCarModal = ref(false)
@@ -305,8 +377,12 @@ export default {
       color: '',
       mileage: 0,
       fuelType: 'GASOLINE',
-      transmission: 'MANUAL',
-      description: ''
+      transmission: 'AUTOMATIC',
+      description: '',
+      vin: '',
+      doors: 4,
+      seats: 5,
+      engineSize: ''
     })
     const editingCarId = ref(null)
 
@@ -368,7 +444,7 @@ export default {
         toast.value.show('Car marked as sold!', 'success')
         await loadCars()
       } catch (error) {
-        toast.value.show('Failed to update car status', 'error')
+          toast.value.show('Failed to update car status', 'error')
       }
     }
 
@@ -384,8 +460,12 @@ export default {
         color: '',
         mileage: 0,
         fuelType: 'GASOLINE',
-        transmission: 'MANUAL',
-        description: ''
+        transmission: 'AUTOMATIC',
+        description: '',
+        vin: '',
+        doors: 4,
+        seats: 5,
+        engineSize: ''
       }
     }
 

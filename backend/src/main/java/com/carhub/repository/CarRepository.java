@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -21,13 +22,17 @@ public interface CarRepository extends JpaRepository<Car, Long> {
            "(:minPrice IS NULL OR c.price >= :minPrice) AND " +
            "(:maxPrice IS NULL OR c.price <= :maxPrice) AND " +
            "(:year IS NULL OR c.year = :year) AND " +
-           "(:status IS NULL OR c.status = :status)")
+           "(:status IS NULL OR c.status = :status) AND " +
+           "(:startDate IS NULL OR c.createdAt >= :startDate) AND " +
+           "(:endDate IS NULL OR c.createdAt <= :endDate)")
     Page<Car> findCarsWithFilters(@Param("brand") String brand,
                                   @Param("model") String model,
                                   @Param("minPrice") BigDecimal minPrice,
                                   @Param("maxPrice") BigDecimal maxPrice,
                                   @Param("year") Integer year,
                                   @Param("status") Car.Status status,
+                                  @Param("startDate") LocalDateTime startDate,
+                                  @Param("endDate") LocalDateTime endDate,
                                   Pageable pageable);
 
     @Query("SELECT COUNT(c) FROM Car c WHERE c.status = :status")

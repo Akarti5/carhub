@@ -23,6 +23,6 @@ export const saleService = {
   },
 
   async getRecentSales(limit = 10) {
-    return await api.get(`/sales/recent?limit=${limit}`)
+    return await api.get(`/sales?size=${limit}&sortBy=saleDate&sortDir=desc`)
   },
 }

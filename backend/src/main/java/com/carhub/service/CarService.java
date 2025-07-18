@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,8 +29,9 @@ public class CarService {
 
     public Page<Car> getCarsWithFilters(String brand, String model, BigDecimal minPrice, 
                                        BigDecimal maxPrice, Integer year, Car.Status status, 
+                                       LocalDateTime startDate, LocalDateTime endDate,
                                        Pageable pageable) {
-        return carRepository.findCarsWithFilters(brand, model, minPrice, maxPrice, year, status, pageable);
+        return carRepository.findCarsWithFilters(brand, model, minPrice, maxPrice, year, status, startDate, endDate, pageable);
     }
 
     public Car getCarById(Long id) {

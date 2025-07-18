@@ -5,7 +5,7 @@ export const dashboardService = {
     return await api.get("/dashboard/stats")
   },
 
-  async getCharts(year = 2024) {
+  async getCharts(year = new Date().getFullYear()) {
     return await api.get(`/dashboard/charts?year=${year}`)
   },
 }

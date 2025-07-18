@@ -40,10 +40,17 @@ public class ReportController {
         
         try {
             // Get all cars with filters
-            List<Car> cars = carService.getCarsWithFilters(
-                brand, model, null, null, null, status, 
-                PageRequest.of(0, 1000)
-            ).getContent();
+           List<Car> cars = carService.getCarsWithFilters(
+    brand,
+    model,
+    null, // minPrice
+    null, // maxPrice
+    null, // year
+    status,
+    null, // createdAfter
+    null, // createdBefore
+    PageRequest.of(0, 1000) // pageable
+).getContent();
 
             byte[] pdfBytes = pdfService.generateCarInventoryReport(cars);
 

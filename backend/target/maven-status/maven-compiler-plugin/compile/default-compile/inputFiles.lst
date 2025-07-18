@@ -2,8 +2,10 @@ C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\security\JwtAuthe
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\service\PdfService.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\dto\CarDTO.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\security\JwtTokenProvider.java
+C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\dto\ClientDTO.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\repository\CarRepository.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\service\CarService.java
+C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\controller\ClientController.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\config\WebSecurityConfig.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\controller\CarController.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\entity\Client.java
@@ -19,6 +21,7 @@ C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\CarhubApplication
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\repository\ClientRepository.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\dto\LoginResponse.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\controller\DebugController.java
+C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\controller\SaleController.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\security\JwtAuthenticationEntryPoint.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\entity\CarImage.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\entity\Admin.java
@@ -26,6 +29,10 @@ C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\entity\Car.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\dto\LoginRequest.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\repository\AdminRepository.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\service\DashboardService.java
+C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\dto\SaleDTO.java
+C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\service\ClientService.java
+C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\service\SaleService.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\controller\HealthController.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\service\AdminDetailsService.java
 C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\service\AdminInitService.java
+C:\Users\SITRAKINIAINA\carhub\backend\src\main\java\com\carhub\service\EmailService.java

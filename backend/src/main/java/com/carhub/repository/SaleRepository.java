@@ -29,4 +29,13 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
     List<Object[]> getMonthlySales(@Param("year") int year);
 
     List<Sale> findTop10ByOrderBySaleDateDesc();
+
+    // New method for searching sales between two dates
+    Page<Sale> findBySaleDateBetween(LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
+
+    // New method for monthly sales revenue for a specific period (e.g., last 6 months)
+    @Query("SELECT FUNCTION('DATE_TRUNC', 'month', s.saleDate), SUM(s.salePrice) FROM Sale s " +
+           "WHERE s.saleDate >= :startDate AND s.saleDate <= :endDate " +
+           "GROUP BY FUNCTION('DATE_TRUNC', 'month', s.saleDate) ORDER BY FUNCTION('DATE_TRUNC', 'month', s.saleDate)")
+    List<Object[]> getMonthlyRevenueForPeriod(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 }

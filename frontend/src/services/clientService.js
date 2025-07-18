@@ -23,6 +23,6 @@ export const clientService = {
   },
 
   async searchClients(search, page = 0, size = 10) {
-    return await api.get(`/clients/search?search=${search}&page=${page}&size=${size}`)
+    return await api.get(`/clients?search=${search}&page=${page}&size=${size}`)
   },
 }

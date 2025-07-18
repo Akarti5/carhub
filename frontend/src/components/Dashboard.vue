@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import { ref, onMounted, nextTick, inject } from 'vue'
+import { ref, onMounted, nextTick, inject, watch } from 'vue'
 import { Chart, registerables } from 'chart.js'
 import { useStore } from '../composables/useStore'
 import { dashboardService } from '../services/dashboardService'
@@ -128,8 +128,10 @@ export default {
       averageSalePrice: 0
     })
     const recentSales = ref([])
-    const monthlySalesChart = ref(null)
-    const brandSalesChart = ref(null)
+    const monthlySalesChartRef = ref(null)
+    const brandSalesChartRef = ref(null)
+    let monthlySalesChartInstance = null;
+    let brandSalesChartInstance = null;
 
     const loadDashboardData = async () => {
       try {
@@ -149,15 +151,23 @@ export default {
     }
 
     const initCharts = (chartData) => {
-      // Monthly Sales Chart
-      if (monthlySalesChart.value) {
-        new Chart(monthlySalesChart.value, {
+      // Destroy existing chart instances if they exist
+      if (monthlySalesChartInstance) {
+        monthlySalesChartInstance.destroy();
+      }
+      if (brandSalesChartInstance) {
+        brandSalesChartInstance.destroy();
+      }
+
+      // Monthly Sales Chart (Last 6 Months Revenue)
+      if (monthlySalesChartRef.value) {
+        monthlySalesChartInstance = new Chart(monthlySalesChartRef.value, {
           type: 'line',
           data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: chartData.last6MonthsLabels || [],
             datasets: [{
-              label: 'Sales',
-              data: [12, 19, 3, 5, 2, 3, 9, 15, 8, 12, 6, 4],
+              label: 'Revenue',
+              data: chartData.last6MonthsRevenue || [],
               borderColor: '#f97316',
               backgroundColor: 'rgba(249, 115, 22, 0.1)',
               tension: 0.4,
@@ -176,8 +186,12 @@ export default {
             },
             scales: {
               y: {
+                beginAtZero: true,
                 ticks: {
-                  color: isDarkMode.value ? '#fff' : '#000'
+                  color: isDarkMode.value ? '#fff' : '#000',
+                  callback: function(value) {
+                    return '$' + formatCurrency(value);
+                  }
                 },
                 grid: {
                   color: isDarkMode.value ? '#374151' : '#e5e7eb'
@@ -197,19 +211,27 @@ export default {
       }
       
       // Brand Sales Chart
-      if (brandSalesChart.value) {
-        new Chart(brandSalesChart.value, {
+      if (brandSalesChartRef.value) {
+        const brandLabels = chartData.salesByBrand.map(item => item[0]);
+        const brandData = chartData.salesByBrand.map(item => item[1]);
+
+        brandSalesChartInstance = new Chart(brandSalesChartRef.value, {
           type: 'doughnut',
           data: {
-            labels: ['Toyota', 'Honda', 'Ford', 'BMW', 'Mercedes'],
+            labels: brandLabels,
             datasets: [{
-              data: [30, 25, 20, 15, 10],
+              data: brandData,
               backgroundColor: [
                 '#f97316',
                 '#fb923c',
                 '#fdba74',
                 '#fed7aa',
-                '#ffedd5'
+                '#ffedd5',
+                '#c2410c',
+                '#ea580c',
+                '#9a3412',
+                '#7c2d12',
+                '#f9a825' // Add more colors if needed
               ],
               borderWidth: 2,
               borderColor: isDarkMode.value ? '#1f2937' : '#ffffff'
@@ -244,12 +266,17 @@ export default {
       loadDashboardData()
     })
 
+    // Watch for dark mode changes to update chart colors
+    watch(isDarkMode, () => {
+      loadDashboardData(); // Reload data and re-initialize charts to apply new colors
+    });
+
     return {
       user,
       stats,
       recentSales,
-      monthlySalesChart,
-      brandSalesChart,
+      monthlySalesChart: monthlySalesChartRef,
+      brandSalesChart: brandSalesChartRef,
       formatCurrency,
       formatDate
     }

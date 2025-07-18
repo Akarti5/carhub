@@ -55,4 +55,8 @@ export const reportService = {
 
     return response
   },
+
+  async sendInvoiceEmail(saleId) {
+    return await api.post(`/sales/${saleId}/send-invoice-email`)
+  },
 }

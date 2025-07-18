@@ -5,6 +5,7 @@ com\carhub\entity\Sale$Status.class
 com\carhub\service\DashboardService.class
 com\carhub\service\PdfService.class
 com\carhub\entity\Car$Status.class
+com\carhub\service\EmailService.class
 com\carhub\controller\ReportController.class
 com\carhub\service\CarService.class
 com\carhub\config\AuthenticationConfig.class
@@ -17,10 +18,15 @@ com\carhub\entity\Car$FuelType.class
 com\carhub\controller\RootController.class
 com\carhub\dto\DashboardStats.class
 com\carhub\service\AdminInitService.class
+com\carhub\dto\SaleDTO.class
+com\carhub\service\SaleService.class
+com\carhub\controller\SaleController.class
 com\carhub\dto\LoginResponse.class
 com\carhub\entity\Car$Transmission.class
 com\carhub\entity\Sale$PaymentMethod.class
+com\carhub\service\ClientService.class
 com\carhub\entity\Client.class
+com\carhub\controller\ClientController.class
 com\carhub\repository\ClientRepository.class
 com\carhub\controller\DebugController.class
 com\carhub\entity\Car.class
@@ -28,6 +34,7 @@ com\carhub\entity\Admin.class
 com\carhub\entity\CarImage.class
 com\carhub\service\AdminDetailsService.class
 com\carhub\entity\Sale.class
+com\carhub\dto\ClientDTO.class
 com\carhub\config\WebSecurityConfig.class
 com\carhub\repository\CarRepository.class
 com\carhub\dto\LoginRequest.class
